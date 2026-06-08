@@ -19,7 +19,7 @@ function getGeminiClient(): GoogleGenAI {
   const key = process.env.GEMINI_API_KEY;
   if (!key) {
     throw new Error(
-      "GEMINI_API_KEY is not configured. Please open AI Studio > Settings > Secrets and add your Gemini API Key."
+      "AI Assistant is currently unavailable in this demo version."
     );
   }
   if (!aiClient) {
