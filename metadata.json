@@ -1,0 +1,6 @@
+{
+  "name": "LuxeScribe Pro",
+  "description": "Sales Performance Dashboard, Billing & POS, Inventory Management, Supplier Management, and Customer Relations for Premium Office Supplies.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

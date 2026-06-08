@@ -1,0 +1,109 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Premium office supply boutique product records.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "brand": { "type": "string" },
+        "price": { "type": "number" },
+        "stock": { "type": "number" },
+        "soldQuantity": { "type": "number" },
+        "image": { "type": "string" },
+        "stockStatus": { "type": "string", "enum": ["In Stock", "Low Stock", "Out of Stock"] },
+        "sku": { "type": "string" },
+        "soldThisWeek": { "type": "number" }
+      },
+      "required": ["id", "name", "category", "brand", "price", "stock", "soldQuantity", "image", "stockStatus", "sku", "soldThisWeek"]
+    },
+    "Customer": {
+      "title": "Customer",
+      "description": "Boutique patron CRM and loyalty file.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "initials": { "type": "string" },
+        "status": { "type": "string", "enum": ["Active", "Away", "Dormant"] },
+        "loyaltyTier": { "type": "string", "enum": ["Elite", "Gold", "Platinum"] },
+        "points": { "type": "number" },
+        "totalSpend": { "type": "number" },
+        "lastActivity": { "type": "string" }
+      },
+      "required": ["id", "name", "email", "initials", "status", "loyaltyTier", "points", "totalSpend", "lastActivity"]
+    },
+    "Supplier": {
+      "title": "Supplier",
+      "description": "System registered raw suppliers and contacts.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "location": { "type": "string" },
+        "leadTime": { "type": "string" },
+        "reliability": { "type": "number" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "image": { "type": "string" },
+        "initials": { "type": "string" }
+      },
+      "required": ["id", "name", "role", "location", "leadTime", "reliability", "email", "phone", "image", "initials"]
+    },
+    "PurchaseOrder": {
+      "title": "PurchaseOrder",
+      "description": "Stock procurements from suppliers.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "supplier": { "type": "string" },
+        "supplierInitials": { "type": "string" },
+        "dateCreated": { "type": "string" },
+        "status": { "type": "string", "enum": ["Received", "Sent", "Draft"] },
+        "totalCost": { "type": "number" },
+        "items": { "type": "array" }
+      },
+      "required": ["id", "supplier", "supplierInitials", "dateCreated", "status", "totalCost", "items"]
+    },
+    "SalesRecord": {
+      "title": "SalesRecord",
+      "description": "Instantiated register checkout and sales log.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerName": { "type": "string" },
+        "date": { "type": "string" },
+        "itemsCount": { "type": "number" },
+        "amount": { "type": "number" },
+        "status": { "type": "string", "enum": ["Shipped", "Processing", "Delivered"] }
+      },
+      "required": ["id", "customerName", "date", "itemsCount", "amount", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/products/{productId}": {
+      "schema": "Product",
+      "description": "System products and prices catalog per user."
+    },
+    "/users/{userId}/customers/{customerId}": {
+      "schema": "Customer",
+      "description": "System clients and boutique CRM files per user."
+    },
+    "/users/{userId}/suppliers/{supplierId}": {
+      "schema": "Supplier",
+      "description": "Partner logistic suppliers per user."
+    },
+    "/users/{userId}/purchase_orders/{orderId}": {
+      "schema": "PurchaseOrder",
+      "description": "Procurement orders ledger per user."
+    },
+    "/users/{userId}/sales_records/{saleId}": {
+      "schema": "SalesRecord",
+      "description": "Sales receipt checkout transactions per user."
+    }
+  }
+}

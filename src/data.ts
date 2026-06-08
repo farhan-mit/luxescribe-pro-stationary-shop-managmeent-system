@@ -1,0 +1,355 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import { Product, Customer, Supplier, PurchaseOrder, SalesRecord } from './types';
+
+export const INITIAL_PRODUCTS: Product[] = [
+  {
+    id: 'p1',
+    name: 'Meisterstück Pen',
+    category: 'Pens',
+    brand: 'Montblanc',
+    price: 420.00,
+    stock: 15,
+    soldQuantity: 142,
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAtAurLSR-Da6ufLVWrcycW26cKVyvXziChcebcwF_72JtxADFJ3xaYDEKFb_AS4Gz3rHfoJUlreJYVQCIPKtAShtIhkriVk-fDF-bvK-ChUQuiI9JFNuR7pcjU9QFeNFZ91VEIOw5OzAB7tlW4GNyR_bWx4NuWZrpb9HwxVgpAxdQCmwO7sqCOIdCCsjC8TFqmpqFAL7yP8U2uRsJkBSB7ZGpA5FZg2JkqNSBe2jJ1xHAaqMjybXjwRlOWQX6lAJG75CO9gI-SpMo',
+    stockStatus: 'In Stock',
+    sku: 'MB-149-G',
+    soldThisWeek: 42,
+  },
+  {
+    id: 'p2',
+    name: 'A5 Hardcover Dot',
+    category: 'Papers',
+    brand: 'Leuchtturm1917',
+    price: 24.50,
+    stock: 48,
+    soldQuantity: 185,
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBbgXA8Qd-9xaPCORvrWPSLyN281w296jjCUXaV3SI-vg4Eq-4YiXBoXWhbimIeM2zatkKPSbGj2yUKLIHGMgWbOUCXiYGn1gNDbfneAK0JTVVTBsLmw_vtX61RfQfW0-_HYaOqS0V7EcUQLUECnIjMMfmYNF6FAtSH4YBMtO0FrHXfYa_y65TACT2w6U-MRQJK7YEZ9UUKYzR82gAe6WuUIYAXrGiOtsJZXrbkUd6JB4_cy9Ac55JimT3Mkj4W_bpOC8hh9QqdqPI',
+    stockStatus: 'In Stock',
+    sku: 'LT-A5-HD',
+    soldThisWeek: 30,
+  },
+  {
+    id: 'p3',
+    name: 'Shin-Ryoku Ink',
+    category: 'Ink',
+    brand: 'Iroshizuku',
+    price: 32.00,
+    stock: 22,
+    soldQuantity: 112,
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDURBH9_LOCXw07FPwf656wHEWb7u-UY4AjCyoFagvRHPJ8dLYqMLX5CSZrk_WLLxEm5Mn1PXD23U25KyRzFvirfeboFSeZDzuxPwmNtecP5nTRqjC5xRafBkFL9Swza3fzt5HXlQmIH5pSOVvv8GcN41PF5pRBrPiy7xrFCWzi68syVBFIYNCN39CMxYfHvr18yE40TBrqROy20M5XGlVV4uTwf2thS0PWNvmln0zCd7JJKymdMFHBWniaEboFCl4SsKYmerUXFJ0',
+    stockStatus: 'In Stock',
+    sku: 'IZ-SR-30',
+    soldThisWeek: 35,
+  },
+  {
+    id: 'p4',
+    name: 'Handmade Envelopes',
+    category: 'Papers',
+    brand: 'Amalfi',
+    price: 18.00,
+    stock: 5, // low stock
+    soldQuantity: 64,
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCS9LavvMkdQ7F2B4aPCs5bm0b0WHwt9Cq4q216OsCRlo--gXzFNHvuvUbzhUxlJ5hfEvOaY7q5OsxKc4yfo9sLq_xIQStMoGrRlUpPSkQVRT4U2QTq_uCiHlK1DSGi6NrJzq7H_7w9E6tLUhUVzbH8bMoVR9N-cVbICez0SkH3ip63yt1vt7nj2vxrFhUp_qC8RrrCAHEzeY3btLg4C7pV_ntDhhwThXegM7pvDRW3pXwOpRFhi0rm1W26ZeWZe99IjNQ0JxjhD48',
+    stockStatus: 'Low Stock',
+    sku: 'AM-HE-10',
+    soldThisWeek: 8,
+  },
+  {
+    id: 'p5',
+    name: '800 Mechanical',
+    category: 'Pens',
+    brand: 'Rotring',
+    price: 85.00,
+    stock: 12,
+    soldQuantity: 98,
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCTq17kze9rhxmILKBAw-aQ3_FkFQQuNDv_qfBCcEG7U_i9ZHsDG1EU0uoedTlgbgOCWLieF3aFrOTmGvjvBkgjGHvZ0mDqSplyQmzlPesbDiQBrfRMOunrhuRGR3heuDVv3K6_gwMX89A6aYIzuOAaF2ImvMQBH4kMGMFqs2Aa1Hi03KqKoM0oAFmJA9T9jiEjaawZIgwE7d5SlH8hbD--2-CqT5g_l5nykedlRRHzIXbIHNtSd65EWaEv3A28xOCWNU_z0joie6I',
+    stockStatus: 'In Stock',
+    sku: 'RR-800-MB',
+    soldThisWeek: 18,
+  },
+  {
+    id: 'p6',
+    name: 'Sealing Wax Set',
+    category: 'Luxury',
+    brand: 'Manuscript',
+    price: 45.00,
+    stock: 24,
+    soldQuantity: 73,
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBePjRnLnAiKTkNvF0CGq9RCunOmuJGtsGcdPQA4igA1oner7i1AgeAlSzbKbCOCPT-kZqXEEPleMBdTCOOIHseC2A7iTw5ivJypqUN9Zoy4fPwwh82O4IJwX3ezUUU6HOSFUiC3jBEgp4dtJc-uI6JGh7uAu0eqS2hfhyxp9CLJ39lug3BJHOlc3zlrtvPG5hEIecLiZIrMivLn8hL_zQNlWQkihsNn4KIwhVSR5m6n4ItxTppRYjnsV0_ZNHbcaXHUd1slVMg724',
+    stockStatus: 'In Stock',
+    sku: 'MS-WXS-RD',
+    soldThisWeek: 22,
+  },
+  {
+    id: 'p7',
+    name: 'Luxe Leather Notebook',
+    category: 'Papers',
+    brand: 'LuxeScribe',
+    price: 48.00,
+    stock: 124,
+    soldQuantity: 420,
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBrQCAIyaj3nbNLwaq1Vo35xtBJTPsyFtc4UAUQybYTEP4CooeT4CmKAoDEyoGknEnPbVfgvIkmKlhMyVAbPPPZBObzBCFGOe3u_6-yRENoRZRjjy5xYoBL-YlNHmHQuJG6lmQReEOVGZ-15qhZpe-uXb4rDUdPXKGMAo-bdVHVm9BZahQKJv3hTQsiMBoNUJLKiGZYYUGL4GzNHPWADJFtgcdLR8nMgXJMtiIuIYTra8A2aWSGn2phFYqKrm403sduI_16rX8R1Kk',
+    stockStatus: 'In Stock',
+    sku: 'LX-LNB-BK',
+    soldThisWeek: 140,
+  },
+  {
+    id: 'p8',
+    name: 'Precision Fountain Pen',
+    category: 'Writing',
+    brand: 'LuxeScribe',
+    price: 120.00,
+    stock: 12,
+    soldQuantity: 110,
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBm1ELhYI7oj5p83GyXbDTHltT524zlFzrB3A-mBMo4Ev2PVDaCK0PzodIue3bdCU_suPcyU6u7DqjSR37a8A6ydlo9spklE1T06XvOvrFldRL6qj3La-ywScj-jOUdDgs-G1_9gMi4VpI9han0m37irOsAQT21-3BCvY_PIRnT4fr-dFDp7tn0Vc53_3lqS-py7XHbuVneW5HLZfvRcSv9dNAY3JkiXyDLg5JSe3Q_mW7XDCbXsIjUt0z5aRvcv9IvzquYlxNn4VE',
+    stockStatus: 'Low Stock',
+    sku: 'LX-PFP-BL',
+    soldThisWeek: 32,
+  },
+  {
+    id: 'p9',
+    name: 'Executive Planner',
+    category: 'Office Supplies',
+    brand: 'LuxeScribe',
+    price: 35.00,
+    stock: 85,
+    soldQuantity: 240,
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC-cmukav8eO83CvgwqXQhx635S3pl3jF2KAaojkverI7KAZ8mXnUde6MLENl4MbES9YrWAvgDxwJAsbkM-7bCcMLLSMMcX8DkPJx6tlJ5wXU5fvMeqUvZUwzIoY9rh12c-Ko11YVDcSKU3ZDKkfaXv6-li_3yCc57Hc3E6W-ish9ninlZgHSYii_jCcpoXZ2F3X8iMN7OiDlsxw3qItO_-Z7XBJjuMBdH7CvE8LkJm69XBbZxRUegcfwm6B3xBzmzAUT5stjBkC4Q',
+    stockStatus: 'In Stock',
+    sku: 'LX-EXP-GN',
+    soldThisWeek: 64,
+  },
+  {
+    id: 'p10',
+    name: 'Handmade Letter Set',
+    category: 'Paper',
+    brand: 'Amalfi',
+    price: 24.00,
+    stock: 42,
+    soldQuantity: 153,
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBF9hnwjGPPfD9ipsA2dnR0x55qbGJP_7lkRFN2lNHQ_VT50Fa96W1Ur3zRun-MxYNefBPQ6tevLRjcz5kJ1zFNB4J-Vz2j26h6gAUIYyVMfwoi1N2jdyKnGeAayynn_Fh3c716rzzoQ6lwwKAE8gRSZn6-r9INUAFolotu0SOGhYutQavaL9h1F-6XlEb8QuHnHk8pCtDi-rsz1yVKXSsnJADNGqnBD5AyJApnesC_PziraFhHalmWkYUmde51xRPXuMKy2Ik7iDk',
+    stockStatus: 'In Stock',
+    sku: 'AM-MLS-CR',
+    soldThisWeek: 12,
+  },
+  {
+    id: 'p11',
+    name: 'Architectural Ruler Set',
+    category: 'Office Supplies',
+    brand: 'Rotring',
+    price: 62.00,
+    stock: 0,
+    soldQuantity: 44,
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBsyLdqdHmF8YBNT3Z51rif6uzg_CJSH32NIKFV73ujFDv4uU85Cc65Krvr5GmO2SdQBs19_k5YyRckR_5ge5-XsRm9d-OaQA_QunEqFRKYfPfqWZMeXl1MATUn4Od-idns4aMlYcrnBxqL2hVHqK_RuVpH5KxX2ThWtIy0_D4kDD4oz8D9T92-DI2ixzOJMUgea0-KmzpmKidTUAXP1Du3ptu40EWmq2JPKfJRy8pUPtbrdDBn0hQRzgekseVvcSmfX-DhxTd8ZUU',
+    stockStatus: 'Out of Stock',
+    sku: 'RR-ARS-AL',
+    soldThisWeek: 0,
+  },
+  {
+    id: 'p12',
+    name: 'Brass Paperweights',
+    category: 'Office Supplies',
+    brand: 'LuxeScribe',
+    price: 55.00,
+    stock: 18,
+    soldQuantity: 88,
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBCK5kEvnwXEoLS6FyieIIey8uSLOKKm82TXvZlgxq3nbZERPalYldNOz8BFzufJ_ImGB5f8SiQnCihwgTFasRyA5QOoqcSydGjYJf4dd5mCRMQJZLs49z6kgFUrF913cHJ2wrwOAMqoUfBd14tSOkwBAR3-06EsjY-DmkLGDsaYx74bxJOiUiT4YKFomY9kzY3JwxIMUxZFhGNCicQvG1lqVWYdjsLk-WTz7sQHyN6m3zhs9jlkBKOn1U2nqWaCTXKTpw-33L4xyo',
+    stockStatus: 'In Stock',
+    sku: 'LX-BPW-BS',
+    soldThisWeek: 14,
+  },
+  {
+    id: 'p13',
+    name: 'Ceramic Desk Organizer',
+    category: 'Office Supplies',
+    brand: 'LuxeScribe',
+    price: 89.00,
+    stock: 31,
+    soldQuantity: 120,
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB9z-pMfL6VImHYnIomXgvaC6tG3laHODXCmzf8GF-SXFlkJrSCbVXmPlVfC7UeUjbTORtqg2CqMTqp-ICoFPe5tD-z1OPe1fY1q2ouLCBA0vpwwbau_WrcqjHZNFAnJd1pdoWP77-akdEv6AKFweaEuAI4HjGbWbDWxG440Ti3dgNL9agMZ7sCebOtmx2bM0H7vnTFQi58VVVt7Kre48EHIwPkF6kx2Meql-4xtrvmNN074zpHYTSc9Mc-H5nLM12QHmG7hw6IPXk',
+    stockStatus: 'In Stock',
+    sku: 'LX-CDO-WH',
+    soldThisWeek: 19,
+  },
+  {
+    id: 'p14',
+    name: 'Ink Collection: Ocean Mist',
+    category: 'Writing',
+    brand: 'LuxeScribe',
+    price: 28.00,
+    stock: 67,
+    soldQuantity: 340,
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBcUI4_cpCphqp5eYL9MEbhbyW-CHCXdsYmC-mJmAW5mYIdq2KYKXRLWyFZOCw179eWp22rWzUpGalIr6JEBl86SWU_bTJye1pyInA1EeakMw9mn8crvQlow9T9UwK4MvdsD8xrCtreOUwbsBvMo3_KIRC6jaHAhGI9-fT0htmzgHnNGnv0xi71dYRO7iuKlNgZF_V5CMtILjHYH4ZsT_ZIeBzAgL6QFk4pOQGo891jaLRb-Wrs0y6RZJ3sBCV4T1yhbdXaS9AmH58',
+    stockStatus: 'In Stock',
+    sku: 'LX-INC-OM',
+    soldThisWeek: 67,
+  }
+];
+
+export const INITIAL_CUSTOMERS: Customer[] = [
+  {
+    id: 'c1',
+    name: 'Eleanor Vance',
+    email: 'e.vance@studio.com',
+    initials: 'EV',
+    status: 'Active',
+    loyaltyTier: 'Elite',
+    points: 850,
+    totalSpend: 4250.00,
+    lastActivity: '2 hours ago',
+  },
+  {
+    id: 'c2',
+    name: 'Julian Thorne',
+    email: 'j.thorne@agency.com',
+    initials: 'JT',
+    status: 'Active',
+    loyaltyTier: 'Gold',
+    points: 720,
+    totalSpend: 3820.00,
+    lastActivity: 'Yesterday',
+  },
+  {
+    id: 'c3',
+    name: 'Sienna Blake',
+    email: 'sienna.b@luxury.co',
+    initials: 'SB',
+    status: 'Active',
+    loyaltyTier: 'Platinum',
+    points: 950,
+    totalSpend: 5140.00,
+    lastActivity: '3 days ago',
+  },
+  {
+    id: 'c4',
+    name: 'Marcus Reed',
+    email: 'marcus.arch@studio.com',
+    initials: 'MR',
+    status: 'Away',
+    loyaltyTier: 'Gold',
+    points: 600,
+    totalSpend: 2980.00,
+    lastActivity: '2 weeks ago',
+  }
+];
+
+export const INITIAL_SUPPLIERS: Supplier[] = [
+  {
+    id: 's1',
+    name: 'Fabriano Excellence',
+    role: 'Paper Specialist',
+    location: 'Milan, Italy',
+    leadTime: '5-7 Days',
+    reliability: 99.4,
+    email: 'orders@fabriano.it',
+    phone: '+39 02 4455 9900',
+    initials: 'FE',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAz8N-T-wYQmbgVVmFucQnC3LlaW4_FtaIl77g5LZm1-PtRjvhZCG7FLXBvMjg7Qeb0RXtzUOnAU9Zg5XVLn0rXm4i1SIR9usVWK-PJewi3iW2zo0G2ArB_fnIPcW_QMuY419bwkLr9aE86vrFWKpM0c9R8iJB-Jcz_0AvwVIFsQGT1_UJBCOKKfnKXzz9IldIRkTprcfiWh6k7hO0m-pJTP2UmsneTRvQhkQTu_yeTzIeCw5f23K1c6jHyBfOkFKpfjUuYHbA0wgM',
+  },
+  {
+    id: 's2',
+    name: 'Iroshizuku Artisans',
+    role: 'Ink Chemistry',
+    location: 'Tokyo, Japan',
+    leadTime: '12-14 Days',
+    reliability: 97.8,
+    email: 'global@iro-ink.jp',
+    phone: '+81 3 5566 7788',
+    initials: 'IA',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCrzzOuRWtiTBw5qoXeqRevY79jKLF-CLgWxw-rNYmD0v3agxP_FadhJUfaodkfSJscAgwHuTWbVu24q0xxX4on1TMi3MX0QgHh7jpbO1UBjAPWkWAXwprrAbtmK93fTeYZERdnu82D4NCB14p9ZNVH-OUuBU7z3CqxdvO2eFv5m_2Tn13hiwE8FPPyyxJcmz_oQ6pj6DNYf4VgI0oZ6m9okDz7ZEDezOyQd0v3-rgSkTduZSodMAibWbDBxCFseZuaPhBEkwJN_zE',
+  },
+  {
+    id: 's3',
+    name: 'Lamy Manufacturing',
+    role: 'Writing Tools',
+    location: 'Heidelberg, Germany',
+    leadTime: '3-4 Days',
+    reliability: 99.9,
+    email: 'b2b@lamy.de',
+    phone: '+49 6221 3355 0',
+    initials: 'LM',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCbohSjzkuiVW8FCmPaOz6GlHC6WsRPtpjgvXAgguq06Q49SWwxfWPxRsACtSEjV0wEYswdPW1FJTpS3xZzkO5fwpyvzRFq0JJO1XtbyjplA_eTXAZwKFPlDdWIdmVRi0qzcj3QbW7EqJmWAtEA6TlYTQYRIGHPg4dOyTW4gHy8HitxqpQmdR6cBny62Fe1MFP-9SvzGAAwYNI87hq2SODTz4pE9JGszsaB7sFUcg0Bq5DyI8rN3Yyz28qxwV_-8d6GVvvEn3d_ptA',
+  }
+];
+
+export const INITIAL_PURCHASE_ORDERS: PurchaseOrder[] = [
+  {
+    id: 'PO-8291',
+    supplier: 'Montblanc International',
+    supplierInitials: 'M',
+    dateCreated: 'Oct 24, 2023',
+    status: 'Received',
+    totalCost: 4280.00,
+    items: [
+      { sku: 'MB-149-G', name: 'Meisterstück Gold-Coated Fountain Pen', quantity: 4, price: 800.00 },
+      { sku: 'MB-INK-BLK', name: 'Mystery Black Ink Bottle (60ml)', quantity: 24, price: 25.00 },
+      { sku: 'MB-RB-F', name: 'Refill Rollerball (Fine) Black', quantity: 40, price: 12.00 }
+    ]
+  },
+  {
+    id: 'PO-8294',
+    supplier: 'Rhodia Paper Co.',
+    supplierInitials: 'R',
+    dateCreated: 'Oct 26, 2023',
+    status: 'Sent',
+    totalCost: 1150.25,
+    items: [
+      { sku: 'RD-PAD-OR', name: 'Rhodia Orange Grid Notebook', quantity: 50, price: 15.00 },
+      { sku: 'RD-ENV-LP', name: 'Premium Lined Envelopes (Pack of 20)', quantity: 25, price: 16.01 }
+    ]
+  },
+  {
+    id: 'PO-8298',
+    supplier: 'Pelikan AG',
+    supplierInitials: 'P',
+    dateCreated: 'Oct 28, 2023',
+    status: 'Draft',
+    totalCost: 890.00,
+    items: [
+      { sku: 'PK-M1000-IZ', name: 'M1000 Souverän Zoom Fountain Pen', quantity: 1, price: 890.00 }
+    ]
+  },
+  {
+    id: 'PO-8285',
+    supplier: 'Lamy GmbH',
+    supplierInitials: 'L',
+    dateCreated: 'Oct 20, 2023',
+    status: 'Received',
+    totalCost: 2340.00,
+    items: [
+      { sku: 'LM-SF-BK', name: 'Safari Fountain Pen Charcoal Matt', quantity: 60, price: 29.00 },
+      { sku: 'LM-INK-FE', name: 'Crystal Ink Obsidian (30ml)', quantity: 30, price: 20.00 }
+    ]
+  }
+];
+
+export const INITIAL_SALES_RECORDS: SalesRecord[] = [
+  {
+    id: 'LX-9042',
+    customerName: 'Eleanor Fitzwilliam',
+    date: 'Oct 24, 2023',
+    itemsCount: 3,
+    amount: 540.00,
+    status: 'Shipped'
+  },
+  {
+    id: 'LX-9041',
+    customerName: 'Sebastian Thorne',
+    date: 'Oct 24, 2023',
+    itemsCount: 1,
+    amount: 1200.00,
+    status: 'Processing'
+  },
+  {
+    id: 'LX-9039',
+    customerName: 'Clara Van der Berg',
+    date: 'Oct 23, 2023',
+    itemsCount: 5,
+    amount: 295.50,
+    status: 'Delivered'
+  }
+];
