@@ -1,10 +1,10 @@
 {
-  "projectId": "dependable-antenna-k07pf",
-  "appId": "1:976337144502:web:bc14881b9f384e4bb4b417",
-  "apiKey": "AIzaSyDbVKf2ydo3Xg2WmElgjvlauXdnIRgFdCI",
-  "authDomain": "dependable-antenna-k07pf.firebaseapp.com",
-  "firestoreDatabaseId": "ai-studio-a2e00c1d-5b0d-4295-b64b-4ddff2ac075b",
-  "storageBucket": "dependable-antenna-k07pf.firebasestorage.app",
-  "messagingSenderId": "976337144502",
+  "projectId": "stationery-pro",
+  "appId": "VITE_FIREBASE_APP_ID",
+  "apiKey": "VITE_FIREBASE_API_KEY",
+  "authDomain": "stationery-pro.firebaseapp.com",
+  "firestoreDatabaseId": "(default)",
+  "storageBucket": "stationery-pro.firebasestorage.app",
+  "messagingSenderId": "VITE_FIREBASE_MESSAGING_SENDER_ID",
   "measurementId": ""
 }
